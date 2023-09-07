@@ -1,2 +1,114 @@
-# aws-public-private-subnet-architecture
-VPC with servers in private subnets and NAT
+# Secure VPC Architecture with Public and Private Subnets for Production Environment
+## Overview
+This project's overview is depicted in the diagram below. The setup revolves around a Virtual Private Cloud (VPC) featuring both public and private subnets, thoughtfully distributed across two Availability Zones to ensure reliability.
+
+Within each public subnet, there's a NAT gateway to facilitate outbound internet connectivity and a load balancer node for effective traffic distribution.
+
+On the other hand, the project's servers reside in the private subnets. Their deployment and termination are automated through an Auto Scaling group, allowing them to dynamically adapt to workload changes. These servers play a pivotal role in receiving traffic from the load balancer and can access the internet through the NAT gateway when necessary
+
+
+![image](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/9d656294-2011-4467-a620-63954d923710)
+
+## Steps :
+### Step 1 :
+#### Create the VPC :
+1. Open the Amazon VPC console by visiting https://console.aws.amazon.com/vpc/.
+2. On the dashboard, click on "Create VPC."
+3. Under "Resources to create," select "VPC and more."
+4. Configure the VPC:
+   a. Provide a name for the VPC in the "Name tag auto-generation" field.
+   b. For the IPv4 CIDR block, leave it as default suggestion.
+5. Configure the subnets:
+   a. Set the "Number of Availability Zones" to 2 for increased resiliency across multiple Availability Zones.
+   b. Specify the "Number of public subnets" as 2.
+   c. Specify the "Number of private subnets" as 2.
+   d. For NAT gateways, choose "1 per AZ" to enhance resiliency.
+   g. For VPC endpoints, you can choose "None" .
+   h. Regarding DNS options, clear the checkbox for "Enable DNS hostnames."
+
+Once you've configured all the settings, click "Create VPC."
+
+![p1](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/d80b1370-dd76-4043-b4f0-2c757e3c21c7)
+
+![p2](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/722b69ac-f980-421b-8cb5-c3a5365e0a26)
+
+
+![p3](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/32cb40b4-622a-4d13-b208-b0ab60c5cf2f)
+
+
+![p4](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/35732232-120e-4fec-811f-03ad7c2a8438)
+6. Now you can see you are successfully Created VPC .
+
+
+
+
+### Step 2:
+#### Creating the Auto Scaling Group
+
+
+![p5](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/a2e7f738-c9e5-4ab7-bfc9-abff65f3e235)
+
+
+![p6](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/4312da54-b049-484e-ad2d-05e16b0f7163)
+
+
+![p7](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/31663c3b-acd8-40de-b701-a470d6e6caaa)
+
+
+![p8](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/6d0b515a-dbd5-41fd-8565-cad4039a9e8a)
+
+
+![p8](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/d2d13f41-d10b-498a-8756-02e159bc6bd5)
+
+
+![p9](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/34d0786d-e05c-48ff-a478-4cc8a407419b)
+1. Now you have to choose the Key-pair you created.
+
+![p9](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/89903e99-5673-493e-9e19-d92311fb4715)
+
+
+![p11](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/c2c3f452-ef92-4ac0-9fc6-c12c55b3f5c7)
+
+
+![p12](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/6ff77ba7-af88-41b7-8c8c-abcec09c2af8)
+
+
+![p13](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/f1f3b337-6023-4d98-82f9-0b44727e2f76)
+2. Scroll Down and then Click "Next".
+
+![p14](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/2a17a34d-ef23-4607-b0b8-28dbfbcbf890)
+3. Scroll Down and then Click "Next".
+
+![p15](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/e195037c-ec37-4470-b503-cbb7abc0b14d)
+4. Scroll Down and then Click "Next".
+
+![p16](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/b15e60bf-9e9c-4741-ba93-16e724ecf1a5)
+5. Scroll Down and then Click "Skip to Review".
+
+![p17](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/c2e018ae-ffca-43e6-83e1-3fa812dcd93c)
+6. Now your are Successfully Created Auto Scaling Group.<br>
+7. Open the AWS Management Console.<br>
+8. Navigate to the EC2 console by clicking on "Services" in the top-left corner, then selecting "EC2" under the "Compute" section.<br>
+9. In the EC2 dashboard, you'll find the "Instances" link on the left-hand navigation pane. Click on "Instances."<br>
+10. Here, you should see the list of EC2 instances associated with your account. Look for the instances created by your Auto Scaling Group.<br>
+Since you mentioned that the Auto Scaling Group launched instances in different AZs, you can check the "Availability Zone" column to verify that these instances are indeed distributed across multiple AZs.
+
+### Step 3 :
+#### Creating the Bostion Host :
+
+1. Launch Instance as Specified below .
+
+
+![p18](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/c3c2bb90-6886-48f5-8d37-3168646203cf)
+
+
+![p19](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/a902949d-6845-4d3c-b297-99542135eee0)
+
+
+![p20](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/22d69a9d-2ce2-4334-94b4-4a4f5d12655a)
+
+
+![p21`](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/750dea04-8fdc-40bd-baf4-efccdfb9dd5b)
+
+
+![p22](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/5accdbf9-e13e-4cac-b2a7-c95d6f06104d)
