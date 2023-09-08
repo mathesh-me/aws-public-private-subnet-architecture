@@ -1,5 +1,5 @@
 # Secure VPC Architecture with Public and Private Subnets for Production Environment
-## Overview
+## Overview :
 This project's overview is depicted in the diagram below. The setup revolves around a Virtual Private Cloud (VPC) featuring both public and private subnets, thoughtfully distributed across two Availability Zones to ensure reliability.
 
 Within each public subnet, there's a NAT gateway to facilitate outbound internet connectivity and a load balancer node for effective traffic distribution.
@@ -43,7 +43,7 @@ Once you've configured all the settings, click "Create VPC."
 
 
 ### Step 2:
-#### Creating the Auto Scaling Group
+#### Creating the Auto Scaling Group :
 
 
 ![p5](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/a2e7f738-c9e5-4ab7-bfc9-abff65f3e235)
@@ -221,4 +221,4 @@ We intentionally deployed the application on only one instance to check if the L
 ![lb16](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/f41fab30-1c22-41ad-bc92-24b06da4eb94)
 
 
-Now We Successfully deployed Application securely in Private instance , We can access it through Internet using Load Balancer Securely.
+Now We Successfully deployed Application securely in Private instance , We can access it through Internet using Load Balancer Securely .
