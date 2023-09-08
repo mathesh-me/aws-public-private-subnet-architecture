@@ -1,4 +1,4 @@
-![lb6](https://github.com/itz-mathesh/aws-public-private-subnet-architecture/assets/144098846/6ebea4b9-a066-495d-a8c8-9b78920d57bb)# Secure VPC Architecture with Public and Private Subnets for Production Environment
+# Secure VPC Architecture with Public and Private Subnets for Production Environment
 ## Overview
 This project's overview is depicted in the diagram below. The setup revolves around a Virtual Private Cloud (VPC) featuring both public and private subnets, thoughtfully distributed across two Availability Zones to ensure reliability.
 
