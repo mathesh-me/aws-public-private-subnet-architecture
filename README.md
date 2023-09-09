@@ -94,7 +94,7 @@ Once you've configured all the settings, click "Create VPC."
 Since you mentioned that the Auto Scaling Group launched instances in different AZs, you can check the "Availability Zone" column to verify that these instances are indeed distributed across multiple AZs.
 
 ### Step 3 :
-#### Creating the Bostion Host :
+#### Creating the Bastion Host :
 
 1. Launch Instance as Specified below .
 
